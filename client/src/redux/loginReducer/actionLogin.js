@@ -15,31 +15,39 @@ export function setUser(user) {
         
         if(user.id){
             let currentCart = {}
-            await axios.get(`/orders/active/${user.id}`)
-            .then(res => currentCart = res.data.length && res.data[0])
-            .then(() => {
-              if(!currentCart.state) {
-                axios.post(`/orders/${user.id}`, {state: 'cart'})
-                .then(() => {
-                  let cart = JSON.parse(localStorage.getItem('cart'));
-                  cart && cart.forEach( item => {
-                    axios.post(`/orders/users/${user.id}/cart`, { id: item.id })
-                  })
-                })
-                .then(() => localStorage.removeItem('cart'))
-              }
-      
-              currentCart.state === 'created' && localStorage.removeItem('cart');
-      
-              if(currentCart.state === 'cart') {
-                let cart = JSON.parse(localStorage.getItem('cart'));
-                cart && cart.forEach( item => {
-                  axios.post(`/orders/users/${user.id}/cart`, { id: item.id })
-                })
-                localStorage.removeItem('cart');
-              }
-            })
+            await axios
+              .get(`/orders/active/${user.id}`)
+              .then((res) => (currentCart = res.data.length && res.data[0]))
+              .then(() => {
+                if (!currentCart.state) {
+                  axios
+                    .post(`/orders/${user.id}`, { state: "cart" })
+                    .then(() => {
+                      let cart = JSON.parse(localStorage.getItem("cart"));
+                      cart &&
+                        cart.forEach((item) => {
+                          axios.post(`/orders/users/${user.id}/cart`, {
+                            id: item.id,
+                          });
+                        });
+                    })
+                    .then(() => localStorage.removeItem("cart"));
+                }
 
+                currentCart.state === "created" &&
+                  localStorage.removeItem("cart");
+
+                if (currentCart.state === "cart") {
+                  let cart = JSON.parse(localStorage.getItem("cart"));
+                  cart &&
+                    cart.forEach((item) => {
+                      axios.post(`/orders/users/${user.id}/cart`, {
+                        id: item.id,
+                      });
+                    });
+                  localStorage.removeItem("cart");
+                }
+              });
             let reduxCart = []
             await axios.get(`/orders/users/${user.id}/cart`)
             .then(res => {

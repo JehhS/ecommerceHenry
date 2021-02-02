@@ -19,6 +19,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import jwt from "jsonwebtoken";
 import {setUser} from '../../redux/loginReducer/actionLogin.js'
+import { GoogleLogin } from "react-google-login";
 
 const validationSchema = yup.object({
   email: yup
@@ -61,6 +62,11 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  google: {
+    direction: 'column',
+    alignItems: "center",
+    justifyContent: "center",
+  },
 }));
 
 export default function Login() {
@@ -81,8 +87,8 @@ export default function Login() {
             alert(res.data.message);
           } else {
             const { token } = res.data;
-            const user = jwt.decode(token)
-            dispatch(setUser(user.user))
+            const user = jwt.decode(token);
+            dispatch(setUser(user.user));
             localStorage.setItem("token", token);
             formik.resetForm({});
             history.push("/");
@@ -93,6 +99,24 @@ export default function Login() {
         });
     },
   });
+  //Google Login
+  const responseGoogle = (response) => {
+    const { email } = response.profileObj;
+    console.log(email);
+    try {
+      axios
+        .post("/login/google/", {email})
+        .then((res) => {
+            const { token } = res.data;
+            const user = jwt.decode(token);
+            dispatch(setUser(user.user));
+            localStorage.setItem("token", token);
+            history.push("/");
+        })
+    } catch (error) {
+        alert(error);
+      }
+  };
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -158,6 +182,17 @@ export default function Login() {
                 {"¿No tienes cuenta? Regístrate"}
               </Link>
             </Grid>
+          </Grid>
+          <Grid container>
+              <br /> <br />
+              <GoogleLogin
+                className={classes.google}
+                clientId="659128844108-n6skffm8t3tu5t3vvevg3jf3a656ffmv.apps.googleusercontent.com"
+                buttonText="Login"
+                onSuccess={responseGoogle}
+                onFailure={responseGoogle}
+                cookiePolicy={"single_host_origin"}
+            />
           </Grid>
         </form>
       </div>

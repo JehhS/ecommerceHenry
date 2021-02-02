@@ -37,4 +37,28 @@ router.post("/", (req, res) => {
   });
 });
 
+router.post("/google", (req, res) => {
+  const { email } = req.body;
+  User.findOne({ where: { email: email } }).then((userDB) => {
+    if (!userDB) {
+      return res.status(400).json({
+        err: "Datos incorrectos",
+      });
+    }
+    //Generamos el JWT
+    let token = jwt.sign(
+      {
+        user: userDB,
+      },
+      JWT_SECRET,
+      { expiresIn: JWT_EXPIRES }
+    );
+    res.json({
+      user: userDB,
+      loggedIn: true,
+      token,
+    });
+  });
+});
+
 module.exports = router;
