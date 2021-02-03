@@ -34,6 +34,8 @@ import UpdatePhotos from '../uploadImg/UpdatePhotos.jsx';
 import ListUsers from '../users/listUsers.jsx'
 import EditUser from '../editUser/EditUser.jsx'
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+import AddVoucher from '../vouchers/AddVoucher'
+import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 
 const drawerWidth = 240;
 
@@ -170,6 +172,7 @@ export default function Dashboard() {
                         </ListItemIcon>
                         <ListItemText primary="Orders" />
                     </ListItem>
+                    <Divider />
                     <ListItem button component={RouterLink} to="/dashboard/listProducts">
                         <ListItemIcon>
                             <ViewListIcon />
@@ -182,23 +185,33 @@ export default function Dashboard() {
                         </ListItemIcon>
                         <ListItemText primary="Add Product" />
                     </ListItem>
+                    <Divider />
                     <ListItem button component={RouterLink} to="/dashboard/addPhotos">
                         <ListItemIcon>
                             <AddAPhotoIcon />
                         </ListItemIcon>
                         <ListItemText primary="Add Photos" />
                     </ListItem>
+                    <Divider />
                     <ListItem button component={RouterLink} to="/dashboard/category">
                         <ListItemIcon>
                             <PlaylistAddIcon />
                         </ListItemIcon>
                         <ListItemText primary="Add Categorys" />
                     </ListItem>
+                    <Divider />
                     <ListItem button component={RouterLink} to="/dashboard/listUsers">
                         <ListItemIcon>
                             <PeopleAltIcon />
                         </ListItemIcon>
                         <ListItemText primary="List Users" />
+                    </ListItem>
+                    <Divider />
+                    <ListItem button component={RouterLink} to="/dashboard/voucher/add">
+                        <ListItemIcon>
+                            <LocalOfferIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Add Voucher" />
                     </ListItem>
                 </div>
             </List>
@@ -220,6 +233,7 @@ export default function Dashboard() {
                       <Route exact path="/dashboard/orders/:orderId/view" component={OrderDetail} /> 
                       <Route exact path="/dashboard/listUsers" component={ListUsers} /> 
                       <Route exact path="/dashboard/user/:userId/edit" component={EditUser} /> 
+                      <Route exact path="/dashboard/voucher/add" component={AddVoucher} /> 
                     {/* <Route component={NotFound} /> */}
                   </Switch>
                 </Paper>
