@@ -43,7 +43,7 @@ server.post("/updateProduct", [verifyToken, verifyRole], (req, res, next) => {
       },
     }
   )
-    .then((response) => res.status(200).send("Producto Actualizado"))
+    .then((response) => res.status(200).send("Product Updated"))
     .catch((err) =>
       res.status(400).send("Hubo un error al intentar actualizar")
     );
