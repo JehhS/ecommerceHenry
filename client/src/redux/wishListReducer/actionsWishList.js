@@ -1,24 +1,30 @@
 import axios from "axios"
 export const POST_WISH = 'POST_WISH'
-export const GET_WHISES = 'GET_WISHES'
+export const GET_WISHES = 'GET_WISHES'
 
-export const postWish = (data) => (
-    dispatch
-) => {
-    //por param el user id y por body el product id
+export const postWish = (data) => 
+(dispatch) => {
+    console.log('DATA ACTION', data.userId, data.productId)
     axios
-        .post(`/wish/${data.userId}`, {
+        .post(`/users/wish/${data.userId}`, {
             productId: data.productId,
-        })
-        .then((wish) => {
+        }).then((wish) => {
             dispatch({
                 type: POST_WISH,
-                payload: wish.data
+                payload: data.productId
             })
-        })
-        .catch((err)=> console.log(err))
+        }).catch((err)=> console.log(err))
 }
 
-
-//Obtener: params el user id
-// /wish/:userId
+export const getWishes = (userId) => (dispatch) => {
+    if(userId){
+        axios
+        .get(`/wish/${userId}`)
+        .then((wishes)=>{
+            dispatch({
+                type: GET_WISHES,
+                payload: wishes,
+            })
+        }).catch((err) => console.log(err))
+    }
+}

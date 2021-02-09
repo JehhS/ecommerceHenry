@@ -171,14 +171,15 @@ router.post('/wish/:userId', (req, res) => {
         where: {
             id: req.params.userId
         }
-      }
-      ).then(async (user) => {
+      }).then(async (user) => {
         if (!user) {
             res.redirect('/login');
         } else {
-                WishList.create({
-        userId: req.params.userId,
-        productId: productId
+                WishList.findOrCreate({
+                  where:{
+                    userId: req.params.userId,
+                    productId: productId
+                  }
       }).then(() => {
                     res.send({
                         result: 'Product added ok to whisList'

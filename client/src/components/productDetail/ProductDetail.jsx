@@ -11,6 +11,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import TotalReviews from '../review/totalReviews.jsx';
 import UserReview from '../review/UserReview.jsx'
 import RateReviewIcon from '@material-ui/icons/RateReview';
+import { postWish } from '../../redux/wishListReducer/actionsWishList.js';
 
 function getModalStyle() {
   const top = 50;
@@ -45,6 +46,11 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
+  fonts:{
+  },
+  buttons:{
+    padding: theme.spacing(2),
+  }
 }));
 
 export default function ProductDetail (props) {
@@ -54,6 +60,8 @@ export default function ProductDetail (props) {
   const { id } = useParams();
   const [products, setProducts] = useState([]);
   const [images, setImages] = useState([])
+  const userId = localStorage.getItem('userId');
+  const data = {productId: id, userId: userId }
   const numberFormat = (value) =>
     new Intl.NumberFormat("en-IN", {
       style: "currency",
@@ -121,7 +129,7 @@ export default function ProductDetail (props) {
                         <Typography className={classes.fonts}>{products.description}</Typography>
                         <Typography className={classes.fonts}>Stock:{products.stock}</Typography>
                         <Button
-                            className={classes.info}
+                            className={classes.buttons}
                             startIcon={<LocalMallIcon />}
                             color='secondary'
                             onClick={() => dispatch(addItem(products))}
@@ -130,7 +138,7 @@ export default function ProductDetail (props) {
                         <Button
                             startIcon={<FavoriteBorderIcon />}
                             color='secondary'
-                            // onClick={() => dispatch(addFavorite(products))}
+                            onClick={() => dispatch(postWish(data))}
                         >Add to WishList
                         </Button>
                      </Grid>
