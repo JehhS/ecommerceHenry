@@ -13,6 +13,8 @@ const token = localStorage.getItem('token');
 axios.defaults.baseURL = 'http://localhost:3001'
 axios.defaults.headers.common["x-access-token"] = token;
 
+
+//!Paleta Original 
 const theme = createMuiTheme({
   palette: {
     type: 'light',
@@ -21,6 +23,26 @@ const theme = createMuiTheme({
   },
 });
 
+// //! Paleta Amarilla 
+// const theme = createMuiTheme({
+//   palette: {
+//     type: 'light',
+//     primary: { main: '#F7DA19' },
+//     secondary: { main: '#5142A6', darker: '#413585' },
+//   },
+// });
+
+// //! Paleta Tinto 
+// const theme = createMuiTheme({
+//   palette: {
+//     type: 'light',
+//     primary: { main: '#942D23' },
+//     secondary: { main: '#3B6494', darker: '#294566' },
+//   },
+// });
+
+
+// //! Dark Mode Original 
 // const theme = createMuiTheme({
 //   palette: {
 //     background: {
