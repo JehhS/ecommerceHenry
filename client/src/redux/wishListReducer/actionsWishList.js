@@ -4,7 +4,6 @@ export const GET_WISHES = 'GET_WISHES'
 
 export const postWish = (data) => 
 (dispatch) => {
-    console.log('DATA ACTION', data.userId, data.productId)
     axios
         .post(`/users/wish/${data.userId}`, {
             productId: data.productId,
@@ -19,7 +18,7 @@ export const postWish = (data) =>
 export const getWishes = (userId) => (dispatch) => {
     if(userId){
         axios
-        .get(`/wish/${userId}`)
+        .get(`users/wish/${userId}`)
         .then((wishes)=>{
             dispatch({
                 type: GET_WISHES,

@@ -186,9 +186,9 @@ server.get('/users/:userId/cart', async (req, res, next) => {
     });
     
     const items = await OrderLine.findAll({
-      where: {
-        orderId: order.id,
-      },
+      // where: {
+      //   orderId: order.id,
+      // },
     });
     res.json(items);
   } catch (e) {
