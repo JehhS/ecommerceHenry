@@ -9,9 +9,10 @@ const useStyles = makeStyles({
   root: {
     maxWidth: 345,
     },
-  media: {
-    maxWidth: 345,
-    maxHeigth: 345,
+    media: {
+      height: 100,
+      width: 100
+
     },
 });
 
