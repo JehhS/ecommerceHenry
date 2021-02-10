@@ -14,23 +14,23 @@ axios.defaults.baseURL = 'http://localhost:3001'
 axios.defaults.headers.common["x-access-token"] = token;
 
 
-//!Paleta Original 
-const theme = createMuiTheme({
-  palette: {
-    type: 'light',
-    primary: { main: '#F4E6E3' },
-    secondary: { main: '#C9002D', darker: '#932020' },
-  },
-});
-
-// //! Paleta Amarilla 
+// //!Paleta Original 
 // const theme = createMuiTheme({
 //   palette: {
 //     type: 'light',
-//     primary: { main: '#F7DA19' },
-//     secondary: { main: '#5142A6', darker: '#413585' },
+//     primary: { main: '#F4E6E3' },
+//     secondary: { main: '#C9002D', darker: '#932020' },
 //   },
 // });
+
+//! Paleta Amarilla 
+const theme = createMuiTheme({
+  palette: {
+    type: 'light',
+    primary: { main: '#F7DA19' },
+    secondary: { main: '#5142A6', darker: '#413585' },
+  },
+});
 
 // //! Paleta Tinto 
 // const theme = createMuiTheme({

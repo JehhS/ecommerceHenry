@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Review = (props) => {
+const Review = (props) => { 
   // const isLogged = useSelector((state) => state.loginReducer.isLogged);
   const allReviews = useSelector((state) => state.reviewsReducer.reviews);
   const dispatch = useDispatch();
