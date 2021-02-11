@@ -20,7 +20,7 @@ const WishCard = (product) => {
   console.log('producto en wishcard', product)
     const dispatch = useDispatch();
     const [image, setImage] = useState([])
-    const { id, name, price, stock } = product.data
+    const { id, name, price, stock } = product.data.product
     const classes = useStyles();
 
 const handleRemove = () => {
@@ -28,8 +28,8 @@ const handleRemove = () => {
 
 
   useEffect(() => {
-    // axios.get(`/dashboard/image/${id}`).then(res => {
-    //   setImage(res.data[0].images)})
+    axios.get(`/dashboard/image/${id}`).then(res => {
+      setImage(res.data[0].images)})
       // eslint-disable-next-line
   }, [])
 

@@ -11,6 +11,8 @@ import List from "@material-ui/core/List";
 import Paper from '@material-ui/core/Paper';
 import Typography from "@material-ui/core/Typography";
 import { Box } from '@material-ui/core';
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
+import CardMedia from '@material-ui/core/CardMedia';
 
 const useStyles = makeStyles((theme) => ({
     container:{
@@ -39,17 +41,11 @@ const useStyles = makeStyles((theme) => ({
 const WishList = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
-    const [products, setProducts] = useState([])
-    const [wishes, setWishes] = useState([])
     const wishList = useSelector((state) => state.wishListReducer.wishes);
     const userId = localStorage.getItem('userId');
 
     useEffect( ()  =>{
-        axios.get(`/products`).then((res) => {
-        setProducts(res.data);
-      });
         dispatch(getWishes(userId))
-        setWishes(wishList)
     },[])
 
     // if (!wishes.length){
@@ -82,7 +78,24 @@ const WishList = () => {
                         console.log('whisList', wishList[index])
                     return (
                         <Box>
-                        <WishCard data={element} key={element.id}/>
+                        {/* <WishCard data={element} key={element.id}/> */}
+                        <div>
+                              <CardMedia
+                                component="img"
+                                alt="ProductCard"
+                                className={classes.media}
+                                // src={image.length ? image[0].url : ""}
+                                title="ProductCard Image"        
+                              />
+                            <h1>
+                             Nombre: {element.product.name} <br></br>
+                            </h1>
+                            <h3>
+                              Precio: {element.product.price} <br></br>
+                                  </h3>
+                              Stock: {element.product.stock} <br></br>         
+                       <DeleteOutlineIcon />          
+                        </div>
                         </Box>
                     )
                     
