@@ -29,12 +29,15 @@ const useStyles = makeStyles((theme) => ({
     },
     root: {
         marginTop: 18,
-        minWidth: 350
+        minWidth: 250
     },
     title: {
-        fontSize: 25,
+        fontSize: 20,
         marginBottom: theme.spacing(3),
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        [theme.breakpoints.up('sm')]: {
+            fontSize: 25,
+        },
     },
     subTitle: {
         fontSize: 18,
@@ -133,21 +136,7 @@ export default function Profile() {
             
     }
 
-
-
-    const {getRootProps, getInputProps} = useDropzone({
-        accept: 'image/*',
-        multiple:  false,
-        onDrop: acceptedFiles =>  {
-            Object.assign(acceptedFiles[0], {preview: URL.createObjectURL(acceptedFiles[0])})
-            setImage(acceptedFiles[0])
-            setOpen(true)
-            }
-    })
-
-
-    return (
-        <>
+    const modalEditPhoto = (
         <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
         <DialogTitle id="simple-dialog-title">Edit Avatar</DialogTitle>
             <Paper elevation={3} className={classes.PaperModal} >
@@ -166,10 +155,10 @@ export default function Profile() {
                     />
                     </Grid>
                     <Grid container item direction="row" justify="space-between">
-                        <Grid item xs={4}>
+                        <Grid item xs={12} md={4}>
                             Zoom:
                         </Grid>
-                        <Grid item xs={8}>
+                        <Grid item xs={12} md={8}>
                             <input
                             style={{width: "100%"}}
                             name="scale"
@@ -183,10 +172,10 @@ export default function Profile() {
                         </Grid>
                     </Grid>
                     <Grid container item direction="row" justify="space-between">
-                        <Grid item xs={4}>
+                        <Grid item xs={12} sm={4}>
                             Rotation:
                         </Grid>
-                        <Grid item xs={8}>
+                        <Grid item xs={12} sm={8}>
                             <input
                             style={{width: "100%"}}
                             name="scale"
@@ -206,67 +195,79 @@ export default function Profile() {
                     </Grid>
                 </Grid>
             </Paper> 
-        </Dialog>
-        <Grid item container justify="center" direction="column">
-            <Grid item container justify="center">
-                <Grid item container justify="center" xs={4} direction="column" >
-                    <Grid item container justify="center">
+        </Dialog>)
+
+
+    const {getRootProps, getInputProps} = useDropzone({
+        accept: 'image/*',
+        multiple:  false,
+        onDrop: acceptedFiles =>  {
+            Object.assign(acceptedFiles[0], {preview: URL.createObjectURL(acceptedFiles[0])})
+            setImage(acceptedFiles[0])
+            setOpen(true)
+            }
+    })
+
+
+    return (
+        <>
+        <Grid container justify="center" alignItems="center" direction="row">
+            <Grid item xs={false} sm={1}></Grid>
+            <Grid item container justify="center" xs={12} sm={5}>
+                <Grid item xs={1}></Grid>
+                <Grid item container xs={10} direction="column">
+                    <Grid item>
                         <Badge  badgeContent={
-                                <div style={chipStyles} {...getRootProps()} > 
-                                    <input {...getInputProps()}  />
-                                    <EditIcon /> 
-                                </div>} 
+                            <div style={chipStyles} {...getRootProps()} > 
+                                <input {...getInputProps()}  />
+                                <EditIcon /> </div>} 
                                 overlap="circle"
                                 anchorOrigin={{
-                                    vertical: 'bottom',
-                                    horizontal: 'right',
-                                }}>
-                            <Avatar alt={`${user.name} ${user.lastName}`} src={url} className={classes.large} />
+                                vertical: 'bottom',
+                                horizontal: 'right',}}>
+                                <Avatar alt={`${user.name} ${user.lastName}`} src={url} className={classes.large} />
                         </Badge>
                     </Grid>
-                    <Grid item container justify="center">
+                    <Grid item >
                         <Typography className={classes.title} color="textPrimary" gutterBottom>
                             {`${user.name} ${user.lastName}`}
                         </Typography>
                     </Grid>
                 </Grid>
-                <Grid item container justify="center" xs={7}>
-                    <Grid item sm={3}>
-                        <Card className={classes.root} variant="outlined">
-                            <CardContent>
-                            <Typography className={classes.title} color="textSecondary" gutterBottom>
-                                {user.email}
-                            </Typography>
-                            <Typography className={classes.pos} color="textPrimary">
-                                <strong>DNI:</strong> {user.dni}
-                            </Typography>
-                            <Typography className={classes.pos} color="textPrimary">
-                                <strong>Bithdate:</strong> {user.birthDate}
-                            </Typography>
-                            <Typography className={classes.pos} color="textPrimary">
-                                <strong>Country:</strong> {user.country}
-                            </Typography>
-                            <Typography className={classes.pos} color="textPrimary">
-                                <strong>Address:</strong> {user.address}
-                            </Typography>
-                            <Typography className={classes.pos} color="textPrimary">
-                                <strong>Phone Number:</strong> {user.phone}
-                            </Typography>
-                            </CardContent>
-                            <CardActions className={classes.button}>
-                                <EditModal user={user} initialUser={initialUser} />
-                            </CardActions>
-                        </Card>
-                    </Grid>
-                </Grid>
+            </Grid> 
+            <Grid item xs={12} sm={5}>
+                    <Card className={classes.root} variant="outlined">
+                        <CardContent>
+                        <Typography className={classes.title} color="textSecondary" gutterBottom>
+                            {user.email}
+                        </Typography>
+                        <Typography className={classes.pos} color="textPrimary">
+                            <strong>DNI:</strong> {user.dni}
+                        </Typography>
+                        <Typography className={classes.pos} color="textPrimary">
+                            <strong>Bithdate:</strong> {user.birthDate}
+                        </Typography>
+                        <Typography className={classes.pos} color="textPrimary">
+                            <strong>Country:</strong> {user.country}
+                        </Typography>
+                        <Typography className={classes.pos} color="textPrimary">
+                            <strong>Address:</strong> {user.address}
+                        </Typography>
+                        <Typography className={classes.pos} color="textPrimary">
+                            <strong>Phone Number:</strong> {user.phone}
+                        </Typography>
+                        </CardContent>
+                        <CardActions className={classes.button}>
+                            <EditModal user={user} initialUser={initialUser} />
+                        </CardActions>
+                    </Card>
             </Grid>
-            <Grid item container justify="space-around" direction="row" sm={12} style={{marginTop: "2%"}}>
-                <Grid item sm={10}>
-                    <ListOrders />
-                </Grid>
+            <Grid item xs={false} sm={1}></Grid>
+            <Grid item xs={12} sm={10}>
+                <ListOrders />
             </Grid>
-
         </Grid>
+        {modalEditPhoto}
         </>
     )
 }
