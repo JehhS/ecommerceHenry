@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import Carrousel from '../carousel/Carousel.jsx';
 import Navbar from '../navbar/Navbar';
-import Featured from './Featured'
 // import swal from 'sweetalert2'
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
@@ -33,7 +32,6 @@ function Home() {
     <React.Fragment>
       <Navbar/>
       <Carrousel></Carrousel>
-      <Featured />
     </React.Fragment>
   );
 }
