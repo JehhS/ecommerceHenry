@@ -77,16 +77,16 @@ const WishList = () => {
                     <Grid item container xs={12}>
                       <List className={classes.list}>
 
-                      {products && products.map((element, index) => {
-             if(element.id === wishList[index] ){
+                      {wishList && wishList.map((element, index) => {
+                        console.log('producto iteracion element', element)
+                        console.log('whisList', wishList[index])
                     return (
                         <Box>
                         <WishCard data={element} key={element.id}/>
                         </Box>
                     )
-                    }
+                    
              })}
-
                       </List>
                     </Grid>
                 </Grid>

@@ -2,7 +2,7 @@ const server = require("express");
 const bcrypt = require("bcrypt");
 const router = server.Router();
 const { verifyToken, verifyRole } = require("../middlewares/auth");
-const { User, WishList } = require("../db.js");
+const { User, WishList, Product } = require("../db.js");
 
 //Crear Usuario
 router.post("/", (req, res) => {
@@ -196,9 +196,8 @@ router.get('/wish/:userId', async (req, res, next) => {
   try {
     console.log(req.params.userId)
     const {userId} = req.params
-    let response = []
-    const products = await WishList.findAll({ where: { userId }})
-    products.forEach(product => response.push(product.productId))
+    let response = await WishList.findAll({ where: { userId }, include: [{ model: Product }]})
+    // products.forEach(product => response.push(product.productId))
     res.json(response);
     } catch (e) {
       res.status(500).send({
@@ -209,4 +208,38 @@ router.get('/wish/:userId', async (req, res, next) => {
     }
 )
 
+//RUTA PARA BORRAR
+router.delete('/wish/:userId', async (req, res, next) => {
+  try {
+    const { productId } = req.body;
+    const {userId} = req.params
+    const products = await WishList.findAll({ where: { userId }, include: [{ model: Product }]})
+    // console.log('PRODUCTS', products)
+    let response = products.filter(product => product.data.productId !== productId)
+    res.json(response);
+  } catch (e) {
+    res.status(500).send({
+    message: 'There has been an error'
+    });
+   next(e);
+    }
+  }
+)
+//OBTENER LA WISHLIST DE UN USER
+// router.get('/wish/:userId', async (req, res, next) => {
+//   try {
+//     console.log(req.params.userId)
+//     const {userId} = req.params
+//     let response = []
+//     const products = await WishList.findAll({ where: { userId }})
+//     products.forEach(product => response.push(product.productId))
+//     res.json(response);
+//     } catch (e) {
+//       res.status(500).send({
+//       message: 'There has been an error'
+//       });
+//      next(e);
+//       }
+//     }
+// )
 module.exports = router;
