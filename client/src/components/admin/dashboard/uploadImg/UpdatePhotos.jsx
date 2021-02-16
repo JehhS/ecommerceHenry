@@ -81,7 +81,7 @@ const UpdatePhotos = () => {
 
 
     const listPhotos = () => {
-      axios.get('http://localhost:3001/dashboard/listPhotos').then(res => setPhotos(res.data))
+      axios.get('/dashboard/listPhotos').then(res => setPhotos(res.data))
     }
     useEffect(listPhotos,[])
 
@@ -97,15 +97,11 @@ const UpdatePhotos = () => {
           formData.append('file', file);
           formData.append('upload_preset', uploadPreset);
           formData.append("api_key", apikey);
-/*           axios.post(uploadURL, formData)
-          .then(res => {
-            return axios.post('http://localhost:3001/dashboard/addPhotos', {url: res.data.url} )
-            }) */
             fetch(uploadURL,{
               method: "POST",
               body: formData,
             }).then(r => r.json())
-            .then(response => axios.post('http://localhost:3001/dashboard/addPhotos', {url: response.url}))
+            .then(response => axios.post('/dashboard/addPhotos', {url: response.url}))
             .then(res => {
               listPhotos() 
               setFiles([])
@@ -129,7 +125,7 @@ const UpdatePhotos = () => {
     } 
 
     const handleDeletePhotos = (id) => {
-      axios.delete(`http://localhost:3001/dashboard/deletePhoto/${id}`).then(setPhotos(photos.filter(element => id !== element.id)))
+      axios.delete(`/dashboard/deletePhoto/${id}`).then(setPhotos(photos.filter(element => id !== element.id)))
   } 
 
     const thumbs = files.map((file,i) => (

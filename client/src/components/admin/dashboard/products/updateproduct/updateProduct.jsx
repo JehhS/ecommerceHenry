@@ -87,7 +87,7 @@ const updateProduct = (data, id) => {
 const {name,price,description,outstanding,stock,status} = data;
 let updateNewForm = {id,name,price,description,outstanding,stock,status}
 
-    axios.post('http://localhost:3001/dashboard/updateProduct', updateNewForm)
+    axios.post('/dashboard/updateProduct', updateNewForm)
 }
 
 const UpdateProduct = () => {
@@ -95,7 +95,7 @@ const UpdateProduct = () => {
     const id = parseInt(productName)
     const [product, setProduct] = useState({})
     const listPhotos = () => {
-        axios.get(`http://localhost:3001/dashboard/image/${id}`).then((res) => {
+        axios.get(`/dashboard/image/${id}`).then((res) => {
             setPhotos(res.data[0].images)
         })
       }

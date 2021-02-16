@@ -63,7 +63,7 @@ export default function AddPhotoComponent({ selectedPhotos, setSelectedPhotos, r
   const [photos, setPhotos] = useState([])
 
   const listAllPhotos = () => {
-    axios.get('http://localhost:3001/dashboard/listPhotos').then(res => setPhotos(res.data))
+    axios.get('/dashboard/listPhotos').then(res => setPhotos(res.data))
   }
 
   useEffect(listAllPhotos,[reloadPhotos])
