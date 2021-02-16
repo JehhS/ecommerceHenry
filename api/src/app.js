@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const cors = require('cors');
 const routes = require('./routes/index.js');
+const history = require('connect-history-api-fallback')
+const path = require('path')
 //Passport
 const passport = require("passport");
 
@@ -38,6 +40,10 @@ server.all("*", function (req, res, next) {
 });
 
 server.use('/', routes);
+
+server.use(history({verbose: true}))
+
+server.use(express.static(path.join(__dirname,"public")))
 
 server.use(passport.initialize());
 
