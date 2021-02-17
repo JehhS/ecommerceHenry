@@ -21,6 +21,7 @@ function Home() {
     if(url.includes('&status=approved')){
       axios.put(`/orders/${userId}`, {state: 'completed' })
       .then(() => {Swal.fire('Congratz', `Your order was successfully completed`, 'success')})
+      .then(() => axios.post(`/orders/email/checkout/${userId}`) )
       .then(() => initializateApp(userId, dispatch))
       .then(() => dispatch({type: SET_STATE, payload: 'cart'}))
       .then(() => history.push('/'))

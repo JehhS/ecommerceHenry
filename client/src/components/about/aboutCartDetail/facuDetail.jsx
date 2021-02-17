@@ -63,7 +63,7 @@ export default function Det() {
         validationSchema: validationSchema,
         onSubmit: (values) => {
           axios
-             .post('/ajaime', values)
+             .post('/fmarilao', values)
              .then(formik.resetForm({}),  Swal.fire({
                              icon: "success",
                              title:'Message sent !',
