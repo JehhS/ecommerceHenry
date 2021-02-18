@@ -3,9 +3,6 @@ const { Product, User, Reviews } = require('../db.js');
 const { verifyToken, verifyUser } = require('../middlewares/auth');
 const sequelize = require('sequelize');
 
-
-//[verifyToken, verifyRole],
-
 //Crear ruta para crear/agregar Review
 server.post(
   '/:productId/:userId',

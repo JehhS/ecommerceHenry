@@ -2,7 +2,6 @@ import React from "react";
 import ProductCard from "./ProductCard";
 import { Grid } from "@material-ui/core";
 
-//Acá le tiramos la data del fetch
 function ProductCards({products}) {
 
   return (
@@ -19,21 +18,6 @@ function ProductCards({products}) {
         </Grid>
       <Grid item xs={false} sm={1}/>
     </Grid>
-/*     
-      <Grid item container>
-        <Grid item xs={12} sm={10}>
-          <Grid container spacing={1}>
-            {products &&
-              products.map((p) => {
-                return (
-                  <Grid item key={p.id} xs={12} sm={4}>
-                    <ProductCard product={p}/>
-                  </Grid>
-                );
-              })}
-          </Grid>
-        </Grid>
-      </Grid> */
   );
 }
 

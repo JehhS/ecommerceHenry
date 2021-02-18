@@ -24,7 +24,6 @@ const UserReviews = ({props}) => {
   const [rating, setRating] = useState(0);
   const userId = localStorage.getItem('userId');
      
-  //Renderiza solo cuando completo la orden
   const handleSubmit = (e) => {
     let data = {id, userId, rating, description}
     e.preventDefault();
@@ -61,8 +60,7 @@ const UserReviews = ({props}) => {
                   onChange={(event, newValue) => handleRating(newValue)}
                 />  
               </>
-            }
-          >
+          }>
           </FormControlLabel>
           <TextField 
               id="standard-basic" 

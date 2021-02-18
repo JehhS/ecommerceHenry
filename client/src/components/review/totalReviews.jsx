@@ -3,15 +3,14 @@ import Rating from '@material-ui/lab/Rating';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
-
 export default function TotalReviews() {
-
   const[average, setAverage] = useState(0);
   const { id } = useParams();
 
   const getItemAverage = () => {
     axios.get(`/reviews/${id}/avg`).then((res) => setAverage(res.data));
   }
+
   useEffect(getItemAverage, [])
   
     return (
@@ -23,9 +22,6 @@ export default function TotalReviews() {
             readOnly
           />
       </div>
-    );
- 
-
-  
+    );  
 }
 

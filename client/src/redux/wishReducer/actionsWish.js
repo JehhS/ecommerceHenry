@@ -11,7 +11,6 @@ export const clearWish = () => (dispatch) => {
     })
 }
 
-
 export const postWish = (data) => 
 (dispatch) => {
     axios

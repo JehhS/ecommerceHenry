@@ -54,10 +54,6 @@ const WishDetail = (product) => {
     dispatch(addItem(product.data))
   }
   
-  //imagenes
-  //en el axios get
-  //si pongo productId carga la primera vez que entras a wish
-  //si pongo product.data.id no carga la primera vez pero luego si las carga
   useEffect(() => {
     axios.get(`/dashboard/image/${id}`).then(res => {
       res.data.length && setImage(res.data[0].images)})
@@ -108,23 +104,6 @@ const WishDetail = (product) => {
       </Paper>
     </div>
   </>
-    // <div>
-    //   <CardMedia
-    //     component="img"
-    //     alt="ProductCard Image"
-    //     className={classes.media}
-    //     src={image.length ? image[0].url : ''}
-    //     title="ProductCard Image"
-    //   />
-    //   <h1>
-    //     Nombre: {name} <br></br>
-    //   </h1>
-    //   <h3>
-    //     Precio: {price} <br></br>
-    //   </h3>
-    //   Stock: {stock} <br></br>
-      
-    // </div>
   );
 };
 export default WishDetail;

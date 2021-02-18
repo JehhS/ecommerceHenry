@@ -140,7 +140,6 @@ server.get('/all/:userId', async (req, res, next) => {
         const { userId } = req.params
         let response = [];
         const orders = await Order.findAll( { where: {userId } });
-        //orders.forEach(order => order.userId === userId && response.push(order));
         res.json(orders);
     } catch (e) {
         res.status(500).send({

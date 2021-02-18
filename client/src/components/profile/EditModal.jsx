@@ -237,7 +237,6 @@ export default function EditModal({user, initialUser}) {
               </form>
             </div>
           </Container>
-          {/* Acá termina el contenido */}
         </DialogContent>
       </Dialog>
     </React.Fragment>

@@ -1,7 +1,5 @@
 const { DataTypes } = require('sequelize');
 
-// Las ordenes deben tener línea de orden que contiene el precio, productId, y cantidad.
-
 module.exports = (sequelize) => {
   sequelize.define('WishLine', {
     id: {

@@ -14,9 +14,6 @@ export const CLEAN_CART = 'CLEAN_CART';
 export const TOTAL_PRICE = 'TOTAL_PRICE';
 export const SET_STATE = 'SET_STATE';
 
-
-
-
 export function addItem(newProduct) {
   const isLogged = localStorage.getItem('token') ? true : false;
   const userId = localStorage.getItem('userId');

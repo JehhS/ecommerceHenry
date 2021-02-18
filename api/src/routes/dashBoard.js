@@ -142,9 +142,6 @@ server.delete("/deletePhoto/:id", verifyRole, async (req, res, next) => {
 server.post("/:idProduct/image/:idImage", verifyRole, (req, res, next) => {
   const { idProduct, idImage } = req.params;
 
-  // if (typeof categoryId !== "number") {
-  // 	return res.status(401).send('Categoria debe ser un valor numerico');
-  // }
   ProductImage.findOne({
     where: {
       productId: idProduct,
@@ -184,7 +181,6 @@ server.delete(
   (req, res, next) => {
     let idImage = req.params.idImage;
     let idProduct = req.params.idProduct;
-    //Traer antes el nombre de la categoría?
     Product.findByPk(idProduct).then((product) => {
       product.removeImages(idImage);
       res.json(product);
@@ -260,10 +256,6 @@ server.post(
   verifyRole,
   (req, res, next) => {
     const { idProducto, categoryId } = req.params;
-
-    // if (typeof categoryId !== "number") {
-    // 	return res.status(401).send('Categoria debe ser un valor numerico');
-    // }
     ProductCategory.findOne({
       where: {
         productId: idProducto,
@@ -304,7 +296,6 @@ server.delete(
   (req, res, next) => {
     let idCategory = req.params.idCat;
     let idProduct = req.params.idProduct;
-    //Traer antes el nombre de la categoría?
     Product.findByPk(idProduct).then((product) => {
       product.removeCategories(idCategory);
       res.json(product);

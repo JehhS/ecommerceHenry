@@ -32,16 +32,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }))
 
-// El Catalogo muestra una grilla de Componentes ProductCard.
-// Recibe por props un arreglo de productos.
-
 const Catalog = () => {
   const classes = useStyles();
   const [products, setProducts] = useState([])
   const [categories, setCategories] = useState([])
   const { idCat, name } = useParams();
-  const [productsEachPage] = useState(6); // Cuantos items renderiza por pagina
-  const [currentPage, setCurrentPage] = useState (1); // setea el valor de la pagina
+  const [productsEachPage] = useState(6);
+  const [currentPage, setCurrentPage] = useState (1);
   const searchProduct = useSelector((state) => state.productReducer.product);
 
   useEffect(() => {
@@ -62,12 +59,10 @@ const Catalog = () => {
     axios.get("/categories").then((res) => setCategories(res.data));
   }, [idCat, name, searchProduct]);
 
-  //PAGINACION
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  //Contador de productos totales por pagina
   const indexOfLastPost = currentPage * productsEachPage;
   const indexOfFirstPost = indexOfLastPost - productsEachPage;
   const currentPosts = products.slice(indexOfFirstPost, indexOfLastPost);
@@ -113,7 +108,6 @@ const Catalog = () => {
                           </div>
                         );
                       })}
-
                     <Divider></Divider>
                     <ListItem button component={Link} to={`/products`}>
                       <ListItemIcon>
@@ -128,13 +122,10 @@ const Catalog = () => {
             </AccordionDetails>
           </Accordion>
         </Grid>
-
         <Grid item xs={12} md={10} lg={10} className={classes.padding}>
           <ProductCards products={currentPosts} />
         </Grid>
-
       </Grid>
-      {/* ACTUALIZACION PAGINATE */}
       <Box className={classes.paginate}>
         <Pagination totalPages={pageNumbers.length} paginate={paginate} />
       </Box>

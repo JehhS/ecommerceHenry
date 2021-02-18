@@ -32,11 +32,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Review = (props) => {
-  // const isLogged = useSelector((state) => state.loginReducer.isLogged);
   const allReviews = useSelector((state) => state.reviewsReducer.reviews);
   const dispatch = useDispatch();
   const classes = useStyles();
-  const { id } = props; // id de Producto
+  const { id } = props;
 
   useEffect(() => {
     dispatch(getReviews(id));

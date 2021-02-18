@@ -43,7 +43,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ProductDetail(props) {
   const dispatch = useDispatch();
-  // const { product, image } = props.location.state;
   const classes = useStyles();
   const { id } = useParams();
   const [products, setProducts] = useState([]);
@@ -169,8 +168,6 @@ export default function ProductDetail(props) {
             </Grid>
           </Grid>
           </Paper>
-        {/* Info del Producto   */}
-
       </Box>
       <Grid item xs={12}>
         <Review id={id} />

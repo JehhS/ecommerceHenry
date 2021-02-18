@@ -3,7 +3,6 @@ import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 import { Grid } from '@material-ui/core';
 
-
 export default function UserRating(value) {
   return (
     <Grid>

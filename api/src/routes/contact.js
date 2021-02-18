@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const nodemailer = require('nodemailer');
 
-//Ruta gordo
 router.post('/facusiri', (req, res) =>  {
     const data = req.body
 
@@ -43,7 +42,6 @@ router.post('/facusiri', (req, res) =>  {
     smtpTransport.close();
 })
 
-//Ruta Agus
 router.post('/ajaime', (req, res) =>  {
     const data = req.body
 
@@ -87,7 +85,6 @@ router.post('/ajaime', (req, res) =>  {
 })
 
 
-//Ruta Jere
 router.post('/jsantochi', (req, res) =>  {
     const data = req.body
 
@@ -130,7 +127,6 @@ router.post('/jsantochi', (req, res) =>  {
 })
 
 
-//Ruta Zaba
 router.post('/nzaba', (req, res) =>  {
     const data = req.body
 
@@ -172,7 +168,7 @@ router.post('/nzaba', (req, res) =>  {
     smtpTransport.close();
 })
 
-//ruta facu
+
 router.post('/fmarilao', (req, res) =>  {
     const data = req.body
 
@@ -215,7 +211,6 @@ router.post('/fmarilao', (req, res) =>  {
 })
 
 
-//ruta carlos
 router.post('/cramirez', (req, res) =>  {
     const data = req.body
 
@@ -256,7 +251,5 @@ router.post('/cramirez', (req, res) =>  {
 
     smtpTransport.close();
 })
-
-
 
 module.exports = router;

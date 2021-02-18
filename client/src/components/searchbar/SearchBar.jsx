@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom';
 import SearchIcon from '@material-ui/icons/Search';
 import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-// import { fade } from "@material-ui/core/styles";
 import InputBase from '@material-ui/core/InputBase';
 
 const useStyles = makeStyles((theme) => ({
@@ -22,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create('width'),
     width: '100%',
@@ -33,15 +31,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
   const SearchBar = () => {
-
   const [product, setProduct] = useState('');
   const history = useHistory();
   const dispatch = useDispatch();
   const classes = useStyles();
 
   
-  const handleSubmit = (e) => {
-    
+  const handleSubmit = (e) => {  
     e.preventDefault();
     dispatch(onSearch(product));
     if(product.length){

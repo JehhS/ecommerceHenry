@@ -1,16 +1,5 @@
 import React from "react";
-import {
-  Button,
-  Grid,
-  Typography,
-  Container,
-  TextField,
-  FormControl,
-  InputLabel,
-  Input,
-  Select,
-  Avatar,
-} from "@material-ui/core";
+import { Button, Grid, Typography, Container, TextField, FormControl, InputLabel, Input, Select, Avatar } from "@material-ui/core";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import { makeStyles } from "@material-ui/core/styles";
 import { useFormik } from "formik";
@@ -193,9 +182,6 @@ const RegisterForm = () => {
               fullWidth
               type="date"
               id="birthDate"
-              /*               InputLabelProps={{
-                shrink: true,
-              }} */
               label=""
               value={formik.values.birthDate}
               onChange={formik.handleChange}
@@ -229,7 +215,6 @@ const RegisterForm = () => {
               helperText={formik.touched.country && formik.errors.country}
             />
           </Grid>
-          {/* NUMERO DE CELULAR */}
           <Grid item xs={12} sm={6}>
             <FormControl>
               <InputLabel color="secondary" htmlFor="formatted-text-mask-input">
